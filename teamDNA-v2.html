@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>teamDNA v2 | Founder Operating System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --bg-base: #050711;
+            --bg-elevated: #080b16;
+            --accent: #5a7bff;
+            --success: #4fd1a5;
+            --warning: #ffc857;
+            --danger: #ff5a7b;
+        }
+        body {
+            background-color: var(--bg-base);
+            color: #f3f4f6;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        .wow-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, var(--accent), var(--success));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .wow-highlight::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(90,123,255,0.15) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            mix-blend-mode: screen;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .wow-glow {
+            border: 1px solid var(--warning) !important;
+            box-shadow: 0 0 40px rgba(255, 200, 87, 0.2);
+        }
+        .card {
+            background: var(--bg-elevated);
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+        .card:hover {
+            border-color: rgba(255,255,255,0.1);
+        }
+        .chip {
+            border-radius: 999px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .uncertainty-chip {
+            color: var(--warning);
+            border: 1px solid var(--warning);
+            background: rgba(255,200,87,0.1);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.7rem;
+            padding: 0.1rem 0.5rem;
+            border-radius: 999px;
+            vertical-align: middle;
+        }
+        .bullet-confirmed { color: var(--success); }
+        .bullet-uncertain { color: var(--warning); }
+        .interactive-node { cursor: pointer; }
+        .interactive-node:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+    </style>
+</head>
+<body>
+    <div id="app" class="max-w-7xl mx-auto p-6 relative">
+        <div class="wow-badge">✦ Founder Command Center</div>
+        
+        <!-- 1. Hero / Identity Command Header -->
+        <section id="hero" class="wow-highlight relative py-12 border-b border-gray-800 z-10">
+            <h1 class="text-5xl font-bold tracking-tight mb-4 text-white">teamDNA v2</h1>
+            <p class="text-xl text-gray-400">Operator: Vinny Gilberti · The Autonomous Agent Lab · Miami Beach, FL</p>
+            <p class="text-md text-gray-500 mt-2">Mission: Convert every past idea and half-built system into a unified, revenue-generating future.</p>
+        </section>
+
+        <!-- 2. Session Signals -->
+        <section id="session-signals" class="py-8 border-b border-gray-800 relative z-10">
+            <h2 class="text-2xl font-semibold mb-4 text-white">Session Signals</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="card p-4">
+                    <h3 class="text-gray-400 text-sm uppercase tracking-wider mb-1">Financial Urgency</h3>
+                    <p class="text-2xl font-bold text-[#ff5a7b]">CRITICAL <span class="text-sm font-normal text-gray-500 block">Path to Cash First</span></p>
+                </div>
+                <div class="card p-4">
+                    <h3 class="text-gray-400 text-sm uppercase tracking-wider mb-1">Active Focus</h3>
+                    <p class="text-2xl font-bold text-white" id="active-focus-display">NOW Lane</p>
+                </div>
+                <div class="card p-4">
+                    <h3 class="text-gray-400 text-sm uppercase tracking-wider mb-1">System Health</h3>
+                    <p class="text-2xl font-bold text-[#4fd1a5]">Nominal</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Gap Analysis -->
+        <section id="gap-analysis" class="py-8 border-b border-gray-800 relative z-10">
+            <h2 class="text-2xl font-semibold mb-4 text-white">Gap Analysis</h2>
+            <div class="card p-6">
+                <ul class="space-y-3">
+                    <li class="flex items-start gap-2">
+                        <span class="bullet-confirmed mt-1 text-lg leading-none">●</span> 
+                        <span class="text-gray-300">Need absolute clarity on immediate revenue mapping.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="bullet-uncertain mt-1 text-lg leading-none">●</span> 
+                        <span class="text-gray-300">Fulfillment bandwidth limits on Digital Assistants. <span class="uncertainty-chip mt-1">⚠ Estimated · not confirmed</span></span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 4. Priority War Room -->
+        <section id="priority-war-room" class="py-8 border-b border-gray-800 relative z-10">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 gap-4">
+                <h2 class="text-2xl font-semibold text-white">Priority War Room</h2>
+                <div class="flex flex-wrap gap-2">
+                    <button id="btn-focus-fast" class="chip bg-transparent border border-gray-600 text-gray-300 hover:bg-gray-800 focus:outline-none aria-pressed:bg-white aria-pressed:text-black transition-colors" aria-pressed="true" onclick="setFocus('fastest')">Focus: fastest path to cash</button>
+                    <button id="btn-focus-infra" class="chip bg-transparent border border-gray-600 text-gray-300 hover:bg-gray-800 focus:outline-none aria-pressed:bg-white aria-pressed:text-black transition-colors" aria-pressed="false" onclick="setFocus('infra')">Focus: infra that compounds</button>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="war-room-content">
+                <!-- Render via JS -->
+            </div>
+        </section>
+
+        <!-- 5. Full Project Encyclopedia -->
+        <section id="encyclopedia" class="py-8 border-b border-gray-800 relative z-10">
+            <h2 class="text-2xl font-semibold mb-4 text-white">Full Project Encyclopedia</h2>
+            <div class="overflow-x-auto card">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-gray-800 text-gray-400 text-sm bg-gray-900/50">
+                            <th class="py-3 px-4 font-medium">Project</th>
+                            <th class="py-3 px-4 font-medium">Category</th>
+                            <th class="py-3 px-4 font-medium">Lane</th>
+                            <th class="py-3 px-4 font-medium">Rev Score</th>
+                            <th class="py-3 px-4 font-medium">Completion</th>
+                        </tr>
+                    </thead>
+                    <tbody id="encyclopedia-tbody" class="text-gray-300 text-sm">
+                        <!-- Render via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 6. Revenue Architecture Map -->
+        <section id="revenue-map" class="py-8 border-b border-gray-800 relative z-10">
+            <h2 class="text-2xl font-semibold mb-6 text-white">Revenue Architecture Map</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8" id="revenue-map-content">
+                <!-- Render JS -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-medium text-gray-300 border-b border-gray-800 pb-2">Core Offers</h3>
+                    <div id="core-offers-list" class="space-y-3"></div>
+                </div>
+                <div class="space-y-4">
+                    <h3 class="text-xl font-medium text-gray-300 border-b border-gray-800 pb-2">Supporting Infrastructure</h3>
+                    <div id="infrastructure-list" class="space-y-3"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Project Atlas -->
+        <section id="project-atlas" class="py-8 border-b border-gray-800 relative z-10">
+            <h2 class="text-2xl font-semibold mb-4 text-white">Project Atlas</h2>
+            <div class="flex flex-wrap gap-4" id="atlas-content">
+                <!-- Render JS -->
+            </div>
+        </section>
+
+        <!-- 8. Execution Timeline -->
+        <section id="execution-timeline" class="py-8 border-b border-gray-800 relative z-10">
+            <h2 class="text-2xl font-semibold mb-6 text-white">Execution Timeline</h2>
+            <div class="space-y-6 border-l-2 border-gray-800 ml-4 pl-6 relative" id="timeline-content">
+                <!-- Render JS -->
+            </div>
+        </section>
+
+        <!-- 9. BBOY Spawn Queue -->
+        <section id="bboy-queue" class="py-8 border-b border-gray-800 relative z-10">
+            <h2 class="text-2xl font-semibold mb-4 text-white">BBOY Spawn Queue</h2>
+            <form id="bboy-form" class="flex flex-col sm:flex-row gap-4 mb-6">
+                <input type="text" id="bboy-input" required placeholder="Enter new spawn task..." class="flex-1 bg-gray-900 border border-gray-700 text-white rounded-md px-4 py-3 focus:outline-none focus:border-[#5a7bff] transition-colors">
+                <button type="submit" class="bg-[#5a7bff] text-white px-8 py-3 rounded-md font-semibold hover:bg-[#4a6bdf] transition-colors whitespace-nowrap shadow-lg shadow-[#5a7bff]/20">Spawn Task</button>
+            </form>
+            <div class="card bg-gray-900/50 p-4">
+                <ul class="space-y-2" id="bboy-list">
+                    <!-- Generated items -->
+                    <li class="text-gray-500 italic text-sm py-2 px-2" id="empty-queue-msg">Queue is empty. Awaiting operator input.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 10. Operator Briefing Panel -->
+        <section id="briefing-panel" class="py-12 relative z-10">
+            <h2 class="text-2xl font-semibold mb-4 text-white">Operator Briefing Panel</h2>
+            <div class="card p-6 min-h-[250px] relative overflow-hidden" id="briefing-content">
+                <div class="absolute inset-0 bg-gradient-to-br from-gray-900 to-transparent pointer-events-none"></div>
+                <div class="relative z-10 flex items-center justify-center h-full text-gray-500 italic">
+                    Select a project node from the War Room, Map, or Atlas to initialize briefing.
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Data Architecture (Mandatory)
+        const projects = [
+            { name: "The Autonomous Agent Lab", category: "brand", status: "Active", revenue_score: 3, completion_score: 3, priority_lane: "NEXT", why_it_matters: "Brand Container", current_blocker: "None", next_action: "Build awareness", dependencies: [], proof_artifacts: [], uncertainty_flags: ["revenue exact path"] },
+            { name: "RevenueOS v1.0", category: "dashboard", status: "Active", revenue_score: 5, completion_score: 2, priority_lane: "NOW", why_it_matters: "Primary Cash Wedge", current_blocker: "Data integration", next_action: "Deploy MVP", dependencies: [], proof_artifacts: [], uncertainty_flags: [] },
+            { name: "Lead Rescue", category: "offer", status: "Active", revenue_score: 5, completion_score: 2, priority_lane: "NOW", why_it_matters: "Primary Cash Wedge", current_blocker: "Outreach setup", next_action: "Launch campaign", dependencies: [], proof_artifacts: [], uncertainty_flags: [] },
+            { name: "Digital Assistants Service Layer", category: "service", status: "Active", revenue_score: 5, completion_score: 3, priority_lane: "NOW", why_it_matters: "Primary Cash Wedge", current_blocker: "Fulfillment bandwidth", next_action: "Standardize SOPs", dependencies: [], proof_artifacts: [], uncertainty_flags: ["bandwidth limits"] },
+            { name: "Unified Free-Tier Ops Dashboard", category: "dashboard", status: "Planning", revenue_score: 3, completion_score: 2, priority_lane: "NEXT", why_it_matters: "Infrastructure Pillar", current_blocker: "Resource allocation", next_action: "Design spec", dependencies: [], proof_artifacts: [], uncertainty_flags: ["value exact mapping"] },
+            { name: "LangGraph Agent Framework", category: "framework", status: "Active", revenue_score: 3, completion_score: 2, priority_lane: "NEXT", why_it_matters: "Infrastructure Pillar", current_blocker: "Testing", next_action: "Release v1", dependencies: [], proof_artifacts: [], uncertainty_flags: [] },
+            { name: "Agent Observability Stack", category: "observability", status: "Planning", revenue_score: 3, completion_score: 1, priority_lane: "NEXT", why_it_matters: "Infrastructure Pillar", current_blocker: "Architecture design", next_action: "Draft schema", dependencies: [], proof_artifacts: [], uncertainty_flags: [] },
+            { name: "teamDNA Dashboard", category: "dashboard", status: "Active", revenue_score: 4, completion_score: 4, priority_lane: "NEXT", why_it_matters: "Infrastructure Pillar", current_blocker: "Final styling", next_action: "Deploy", dependencies: [], proof_artifacts: [], uncertainty_flags: [] }
+        ];
+
+        const revenueMeta = {
+            "The Autonomous Agent Lab": { core: false, monetizationPath: "Brand Leverage", valueBand: "High", clients: "Future" },
+            "RevenueOS v1.0": { core: true, monetizationPath: "Direct Sales", valueBand: "High", clients: "Active" },
+            "Lead Rescue": { core: true, monetizationPath: "Service Packages", valueBand: "Medium", clients: "Active" },
+            "Digital Assistants Service Layer": { core: true, monetizationPath: "Retainers/Projects", valueBand: "High", clients: "Active" },
+            "Unified Free-Tier Ops Dashboard": { core: false, monetizationPath: "Product-led Growth", valueBand: "Zero/Low", clients: "Future" },
+            "LangGraph Agent Framework": { core: false, monetizationPath: "Tools/Enabler", valueBand: "N/A", clients: "Internal/Devs" },
+            "Agent Observability Stack": { core: false, monetizationPath: "Enterprise/Enabler", valueBand: "High", clients: "Future" },
+            "teamDNA Dashboard": { core: false, monetizationPath: "Internal Efficiency", valueBand: "N/A", clients: "Internal" }
+        };
+
+        let currentFocus = 'fastest'; // 'fastest' | 'infra'
+        let taskQueue = [];
+
+        // Utility: Get Lane Color
+        const getLaneColor = (lane) => {
+            if (lane === 'NOW') return 'bg-[#4fd1a5]/20 text-[#4fd1a5] border-[#4fd1a5]';
+            if (lane === 'NEXT') return 'bg-[#ffc857]/20 text-[#ffc857] border-[#ffc857]';
+            if (lane === 'LATER') return 'bg-gray-700/50 text-gray-300 border-gray-600';
+            return 'bg-[#ff5a7b]/20 text-[#ff5a7b] border-[#ff5a7b]';
+        };
+
+        // Render: Briefing Panel
+        window.showBriefing = (projectName) => {
+            const prj = projects.find(p => p.name === projectName);
+            const meta = revenueMeta[projectName] || {};
+            if (!prj) return;
+
+            const panel = document.getElementById('briefing-content');
+            
+            let uncertaintiesHtml = '';
+            if (prj.uncertainty_flags && prj.uncertainty_flags.length > 0) {
+                const flags = prj.uncertainty_flags.map(u => `<span class="uncertainty-chip">⚠ ${u} (estimate)</span>`).join('');
+                uncertaintiesHtml = `<div class="mt-4 pt-4 border-t border-gray-800"><p class="text-sm text-gray-400 mb-2">Uncertainty Flags:</p>${flags}</div>`;
+            }
+
+            panel.innerHTML = `
+                <div class="relative z-10 animate-fade-in">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-2xl font-bold text-white">${prj.name}</h3>
+                        <span class="chip border ${getLaneColor(prj.priority_lane)}">${prj.priority_lane}</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase">Category</p>
+                            <p class="text-sm text-gray-300 font-medium">${prj.category}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase">Status</p>
+                            <p class="text-sm text-gray-300 font-medium">${prj.status}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase">Revenue Score / 5</p>
+                            <p class="text-sm font-bold text-[#4fd1a5]">${prj.revenue_score}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase">Completion Score / 5</p>
+                            <p class="text-sm font-bold text-[#5a7bff]">${prj.completion_score}</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-900 rounded-lg mb-4">
+                        <p class="text-sm text-gray-400 mb-1">Why it matters:</p>
+                        <p class="text-md text-white">${prj.why_it_matters}</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-3 border border-gray-800 rounded bg-gray-900/50">
+                            <p class="text-xs text-gray-500 uppercase mb-1">Current Blocker</p>
+                            <p class="text-sm text-[#ff5a7b]">${prj.current_blocker}</p>
+                        </div>
+                        <div class="p-3 border border-gray-800 rounded bg-gray-900/50">
+                            <p class="text-xs text-gray-500 uppercase mb-1">Next Action</p>
+                            <p class="text-sm text-[#ffc857]">${prj.next_action}</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-800 flex gap-6">
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase">Monetization Path</p>
+                            <p class="text-sm text-gray-300">${meta.monetizationPath || '<span class="text-gray-600">(unsurfaced)</span>'}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase">Value Band</p>
+                            <p class="text-sm text-gray-300">${meta.valueBand || '<span class="text-gray-600">(unsurfaced)</span>'}</p>
+                        </div>
+                    </div>
+                    ${uncertaintiesHtml}
+                </div>
+            `;
+            
+            // Scroll to it
+            panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        };
+
+        // Render: War Room
+        const renderWarRoom = () => {
+            const container = document.getElementById('war-room-content');
+            container.innerHTML = '';
+            
+            const activeProjects = projects.filter(p => {
+                if (currentFocus === 'fastest') return p.priority_lane === 'NOW';
+                if (currentFocus === 'infra') return p.priority_lane === 'NEXT' || p.priority_lane === 'LATER';
+                return true;
+            });
+
+            activeProjects.forEach(prj => {
+                const isNow = prj.priority_lane === 'NOW';
+                const glowClass = isNow ? 'wow-glow' : '';
+                
+                const card = document.createElement('div');
+                card.className = `card p-5 interactive-node ${glowClass}`;
+                card.tabIndex = 0;
+                card.onclick = () => showBriefing(prj.name);
+                card.onkeydown = (e) => { if(e.key==='Enter'||e.key===' ') showBriefing(prj.name); };
+                
+                card.innerHTML = `
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-lg font-bold text-white">${prj.name}</h3>
+                        <span class="chip border ${getLaneColor(prj.priority_lane)}">${prj.priority_lane}</span>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-4">${prj.why_it_matters}</p>
+                    <div class="flex justify-between items-center text-xs text-gray-500">
+                        <span>Rev: <span class="text-[#4fd1a5] font-bold">${prj.revenue_score}</span></span>
+                        <span>Done: <span class="text-white font-bold">${prj.completion_score}</span></span>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-gray-800">
+                        <p class="text-xs text-[#ffc857] truncate">→ ${prj.next_action}</p>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        };
+
+        // Toggle Focus
+        window.setFocus = (type) => {
+            currentFocus = type;
+            document.getElementById('btn-focus-fast').setAttribute('aria-pressed', type === 'fastest');
+            document.getElementById('btn-focus-infra').setAttribute('aria-pressed', type === 'infra');
+            
+            document.getElementById('active-focus-display').innerText = type === 'fastest' ? 'NOW Lane' : 'Compounding Infra';
+            document.getElementById('active-focus-display').className = `text-2xl font-bold ${type === 'fastest' ? 'text-white' : 'text-[#ffc857]'}`;
+            
+            renderWarRoom();
+        };
+
+        // Render: Encyclopedia
+        const renderEncyclopedia = () => {
+            const tbody = document.getElementById('encyclopedia-tbody');
+            
+            projects.forEach(prj => {
+                const tr = document.createElement('tr');
+                tr.className = "border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors cursor-pointer";
+                tr.onclick = () => showBriefing(prj.name);
+                
+                tr.innerHTML = `
+                    <td class="py-3 px-4 font-medium text-white">${prj.name}</td>
+                    <td class="py-3 px-4 text-gray-400 capitalize">${prj.category}</td>
+                    <td class="py-3 px-4"><span class="chip border ${getLaneColor(prj.priority_lane)}">${prj.priority_lane}</span></td>
+                    <td class="py-3 px-4 text-[#4fd1a5] font-bold">${prj.revenue_score}</td>
+                    <td class="py-3 px-4 text-[#5a7bff] font-bold">${prj.completion_score}/5</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        };
+
+        // Render: Revenue Map
+        const renderRevenueMap = () => {
+            const coreList = document.getElementById('core-offers-list');
+            const infraList = document.getElementById('infrastructure-list');
+            
+            projects.forEach(prj => {
+                const meta = revenueMeta[prj.name];
+                if(!meta) return;
+
+                const node = document.createElement('div');
+                node.className = "card p-4 interactive-node bg-gray-900/60";
+                node.tabIndex = 0;
+                node.onclick = () => showBriefing(prj.name);
+                node.onkeydown = (e) => { if(e.key==='Enter'||e.key===' ') showBriefing(prj.name); };
+                
+                node.innerHTML = `
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="font-bold text-white">${prj.name}</h4>
+                        <span class="text-xs px-2 py-1 bg-gray-800 rounded text-gray-300 border border-gray-700">${meta.valueBand || '(unsurfaced)'}</span>
+                    </div>
+                    <div class="flex gap-2 text-xs">
+                        <span class="text-emerald-400">Path: ${meta.monetizationPath || '(estimate)'}</span>
+                        <span class="text-gray-500">·</span>
+                        <span class="text-blue-400">Clients: ${meta.clients || '(unsurfaced)'}</span>
+                    </div>
+                `;
+
+                if (meta.core) {
+                    coreList.appendChild(node);
+                } else {
+                    infraList.appendChild(node);
+                }
+            });
+        };
+
+        // Render: Atlas
+        const renderAtlas = () => {
+            const container = document.getElementById('atlas-content');
+            
+            projects.forEach(prj => {
+                const btn = document.createElement('button');
+                const isNow = prj.priority_lane === 'NOW';
+                btn.className = `px-4 py-2 rounded-lg border focus:outline-none transition-all ${isNow ? 'bg-[#4fd1a5]/10 border-[#4fd1a5] text-[#4fd1a5] hover:bg-[#4fd1a5]/20' : 'bg-gray-900 border-gray-700 text-gray-300 hover:border-gray-500 hover:text-white'}`;
+                btn.innerText = prj.name;
+                btn.onclick = () => showBriefing(prj.name);
+                container.appendChild(btn);
+            });
+        };
+
+        // Render: Timeline
+        const renderTimeline = () => {
+            const container = document.getElementById('timeline-content');
+            
+            // Sort by phase effectively: NOW -> NEXT -> Planning
+            const sorted = [...projects].sort((a,b) => {
+                const wA = a.priority_lane === 'NOW' ? 1 : a.priority_lane === 'NEXT' ? 2 : 3;
+                const wB = b.priority_lane === 'NOW' ? 1 : b.priority_lane === 'NEXT' ? 2 : 3;
+                return wA - wB;
+            });
+
+            sorted.forEach(prj => {
+                const dotColor = prj.priority_lane === 'NOW' ? 'bg-[#4fd1a5]' : prj.priority_lane === 'NEXT' ? 'bg-[#ffc857]' : 'bg-gray-600';
+                
+                const item = document.createElement('div');
+                item.className = "relative interactive-node";
+                item.tabIndex = 0;
+                item.onclick = () => showBriefing(prj.name);
+                item.onkeydown = (e) => { if(e.key==='Enter'||e.key===' ') showBriefing(prj.name); };
+
+                item.innerHTML = `
+                    <div class="absolute -left-[31.5px] top-2 w-3 h-3 rounded-full ${dotColor} border-2 border-[#050711]"></div>
+                    <div class="card p-4 bg-gray-900/30">
+                        <div class="flex items-center gap-3 mb-1">
+                            <h4 class="font-bold text-lg text-white">${prj.name}</h4>
+                            <span class="chip border ${getLaneColor(prj.priority_lane)} text-[0.65rem] py-0 px-2">${prj.priority_lane}</span>
+                        </div>
+                        <p class="text-sm text-gray-400">Action: <span class="text-gray-300">${prj.next_action}</span></p>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        };
+
+        // Initialize BBOY Queue
+        const initBBOYQueue = () => {
+            const form = document.getElementById('bboy-form');
+            const input = document.getElementById('bboy-input');
+            const list = document.getElementById('bboy-list');
+            const emptyMsg = document.getElementById('empty-queue-msg');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const text = input.value.trim();
+                if(!text) return;
+
+                taskQueue.push({ id: Date.now(), text });
+                input.value = '';
+                
+                if(emptyMsg) emptyMsg.style.display = 'none';
+
+                const li = document.createElement('li');
+                li.className = "flex items-center gap-3 p-3 bg-gray-800/50 border border-gray-700 rounded-md animate-fade-in";
+                li.innerHTML = `
+                    <button class="w-5 h-5 rounded-full border border-gray-500 hover:border-[#4fd1a5] hover:bg-[#4fd1a5]/20 transition-colors flex-shrink-0" onclick="this.parentElement.remove();"></button>
+                    <span class="text-gray-200 text-sm">${text}</span>
+                `;
+                list.insertBefore(li, list.firstChild);
+            });
+        };
+
+        // Main Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            renderWarRoom();
+            renderEncyclopedia();
+            renderRevenueMap();
+            renderAtlas();
+            renderTimeline();
+            initBBOYQueue();
+        });
+    </script>
+    <style>
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
+    </style>
+</body>
+</html>
